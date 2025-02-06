@@ -26,9 +26,16 @@ export default function Page() {
               </Link>
             </nav>
           </div>
-          <Button variant="outline" className="ml-auto">
-            Resume
-          </Button>
+          <Button
+              variant="outline"
+              className="ml-auto"
+              asChild
+            >
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                Resume
+               </a>
+            </Button>
+
         </div>
       </header>
 
