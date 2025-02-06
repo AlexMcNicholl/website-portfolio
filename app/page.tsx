@@ -85,6 +85,14 @@ export default function Page() {
                 link="https://github.com/PugNation/TradingAlgo"
                 tags={["Python Libraries", "SQL", "API Integration"]}
               />
+
+              <ProjectCard
+                title="Project #2"
+                description="Project Description #2."
+                image="/placeholder.svg?height=400&width=600"
+                link="githublink"
+                tags={["Programming Languages Here"]}
+              />
             </div>
           </div>
         </section>
