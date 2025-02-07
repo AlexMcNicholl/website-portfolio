@@ -1,25 +1,25 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Github } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Github } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface ProjectCardProps {
-  title: string
-  description: string
-  image: string
-  link: string
-  tags: string[]
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  tags: string[];
 }
 
 export default function ProjectCard({ title, description, image, link, tags }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
       <div className="relative aspect-video">
         <Image
           src={image || "/placeholder.svg"}
           alt={title}
           fill
-          className="object-cover transition-transform hover:scale-105"
+          className="object-cover transition-transform duration-300 hover:scale-110"
         />
       </div>
       <CardContent className="p-4">
@@ -29,7 +29,7 @@ export default function ProjectCard({ title, description, image, link, tags }: P
           {tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10"
+              className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10 transition-all duration-300 hover:bg-blue-500 hover:text-white"
             >
               {tag}
             </span>
@@ -38,11 +38,10 @@ export default function ProjectCard({ title, description, image, link, tags }: P
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Link href={link} target="_blank" className="inline-flex items-center gap-2 text-sm hover:underline">
-          <Github className="h-4 w-4" />
+          <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
           View on GitHub
         </Link>
       </CardFooter>
     </Card>
-  )
+  );
 }
-
