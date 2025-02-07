@@ -3,7 +3,8 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ParticlesBackground from "@/components/ParticlesBackground";
+import ParticlesBackground from "./components/ParticlesBackground";
+
 
 
 import type React from "react"; // Import React
