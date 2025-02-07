@@ -28,7 +28,7 @@ export default function Page() {
             </nav>
           </div>
           <Button variant="outline" className="ml-auto" asChild>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/AlexMcNicholl_CV.pdf" target="_blank" rel="noopener noreferrer">
               Resume
             </a>
           </Button>
