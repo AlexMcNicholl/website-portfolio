@@ -75,7 +75,7 @@ export default function Page() {
             <ProjectCard
               title="Pairs Trading Algorithm"
               description="Programmatic Trading with Statistical Arbitrage."
-              image="/placeholder.svg?height=400&width=600"
+              image="/9.webp?height=400&width=600"
               link="https://github.com/PugNation/TradingAlgo"
               tags={["Python Libraries", "SQL", "API Integration"]}
             />
