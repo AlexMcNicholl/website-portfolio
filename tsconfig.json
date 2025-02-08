@@ -8,19 +8,34 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
+<<<<<<< HEAD
     "moduleResolution": "bundler",
+=======
+    "moduleResolution": "node", // Changed from "bundler" to "node" for better compatibility
+>>>>>>> fd03747 (Finance Viz Project)
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+<<<<<<< HEAD
+=======
+    "baseUrl": ".", // Added to enable absolute imports
+    "paths": {
+      "@/*": ["app/*"] // Adjusted to correctly map `@/` to `app/`
+    },
+>>>>>>> fd03747 (Finance Viz Project)
     "plugins": [
       {
         "name": "next"
       }
+<<<<<<< HEAD
     ],
     "paths": {
       "@/*": ["./*"]
     }
+=======
+    ]
+>>>>>>> fd03747 (Finance Viz Project)
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

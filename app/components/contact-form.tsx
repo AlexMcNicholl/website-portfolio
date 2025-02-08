@@ -1,9 +1,17 @@
 "use client"
 
+<<<<<<< HEAD
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+=======
+import React from "react"
+import { Button } from "../../components/ui/button"
+import { Card } from "../../components/ui/card"
+import { Input } from "../../components/ui/input"
+import { Textarea } from "../../components/ui/textarea"
+>>>>>>> fd03747 (Finance Viz Project)
 import { useState } from "react"
 
 export default function ContactForm() {

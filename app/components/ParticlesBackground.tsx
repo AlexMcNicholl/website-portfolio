@@ -2,6 +2,10 @@
 import { useCallback } from "react";
 import { loadSlim } from "tsparticles-slim"; // Use slim version for better performance
 import Particles from "react-tsparticles";
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> fd03747 (Finance Viz Project)
 
 export default function ParticlesBackground() {
   const particlesInit = useCallback(async (engine: any) => {

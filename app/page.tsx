@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
-import Link from "next/link"
-import ContactForm from "./components/contact-form"
-import ProjectCard from "./components/project-card"
-import TechStack from "./components/tech-stack"
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import Link from "next/link";
+import ContactForm from "./components/contact-form";
+import ProjectCard from "./components/project-card";
+import TechStack from "./components/tech-stack";
+import { Button } from "./components/ui/button"; // Ensure this matches your structure
+import React from "react";
 
 export default function Page() {
   return (
@@ -12,26 +13,24 @@ export default function Page() {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center justify-between px-4 md:px-6">
           <div className="flex items-center space-x-6">
-            <Link className="flex items-center space-x-2 font-bold text-lg" href="/">
-              <span>Alex McNicholl</span>
+            <Link href="/"
+              className="flex items-center space-x-2 font-bold text-lg">
+                <span>Alex McNicholl</span>
+             
             </Link>
             <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-              <Link href="#about" className="transition-colors hover:text-foreground/80">
-                About
-              </Link>
-              <Link href="#projects" className="transition-colors hover:text-foreground/80">
-                Projects
-              </Link>
-              <Link href="#contact" className="transition-colors hover:text-foreground/80">
-                Contact
-              </Link>
+              <Link href="#about">About</Link>
+              <Link href="#projects">Projects</Link>
+              <Link href="#contact">Contact</Link>
             </nav>
           </div>
-          <Button variant="outline" className="ml-auto" asChild>
-            <a href="/AlexMcNicholl_CV.pdf" target="_blank" rel="noopener noreferrer">
-              Resume
-            </a>
-          </Button>
+          <Link href="/AlexMcNicholl_CV.pdf" target="_blank">
+              <Button variant="outline" className="ml-auto">
+           Resume
+              </Button>
+            </Link>
+
+
         </div>
       </header>
 
@@ -46,24 +45,32 @@ export default function Page() {
           </p>
           <div className="flex space-x-4 mt-6">
             <Link href="https://github.com/AlexMcNicholl" target="_blank">
-              <Button variant="outline" size="icon">
-                <Github className="h-4 w-4" />
-              </Button>
+              
+                <Button variant="outline" size="icon">
+                  <Github className="h-4 w-4" />
+                </Button>
+              
             </Link>
             <Link href="https://www.linkedin.com/in/amcnicholl/" target="_blank">
-              <Button variant="outline" size="icon">
-                <Linkedin className="h-4 w-4" />
-              </Button>
+              
+                <Button variant="outline" size="icon">
+                  <Linkedin className="h-4 w-4" />
+                </Button>
+              
             </Link>
             <Link href="https://twitter.com" target="_blank">
-              <Button variant="outline" size="icon">
-                <Twitter className="h-4 w-4" />
-              </Button>
+              
+                <Button variant="outline" size="icon">
+                  <Twitter className="h-4 w-4" />
+                </Button>
+              
             </Link>
             <Link href="mailto:amcnicholl02@gmail.com">
-              <Button variant="outline" size="icon">
-                <Mail className="h-4 w-4" />
-              </Button>
+              
+                <Button variant="outline" size="icon">
+                  <Mail className="h-4 w-4" />
+                </Button>
+              
             </Link>
           </div>
         </section>
@@ -80,11 +87,11 @@ export default function Page() {
               tags={["Python Libraries", "SQL", "API Integration"]}
             />
             <ProjectCard
-              title="Project #2"
-              description="Project Description #2."
+              title="Financial Data Visualization"
+              description="Real-time stock charts with interactive analysis."
               image="/placeholder.svg?height=400&width=600"
-              link="githublink"
-              tags={["Programming Languages Here"]}
+              link="/projects/financial-visualization"
+              tags={["Next.js", "Recharts", "API Integration"]}
             />
           </div>
         </section>
@@ -110,11 +117,9 @@ export default function Page() {
           © 2024 Alex McNicholl. All rights reserved.
         </p>
         <nav className="flex space-x-4 mt-2">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Thank you for visiting
-          </Link>
+          <Link href="#">Thank you for visiting</Link>
         </nav>
       </footer>
     </div>
-  )
+  );
 }

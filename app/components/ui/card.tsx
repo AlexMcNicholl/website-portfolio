@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import { cn } from "@/lib/utils"; // Ensure you have a utility for merging classNames
+=======
+import { cn } from "../../lib/utils"; // Ensure you have a utility for merging classNames
+>>>>>>> fd03747 (Finance Viz Project)
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
