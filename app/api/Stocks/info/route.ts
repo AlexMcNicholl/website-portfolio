@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // ✅ Fixes prerender error
+
 import { NextResponse } from "next/server";
 import axios from "axios";
 

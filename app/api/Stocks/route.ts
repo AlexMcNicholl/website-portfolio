@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // ✅ Ensures this is always treated as dynamic
+
 import { NextResponse } from "next/server";
 import axios from "axios";
 
