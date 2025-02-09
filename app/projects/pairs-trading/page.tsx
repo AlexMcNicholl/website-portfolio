@@ -13,14 +13,10 @@ export default function PairsTradingProject() {
         <div className="max-w-3xl mt-8 space-y-4">
           <p>
             🔹 **Built with:** Python, NumPy, Pandas, SciPy, SQL, and API integration  
+        <br>🔹 **Features:** Mean reversion detection, real-time market execution, backtesting framework </br>
+        <br>🔹 **Data Sources:** IBKR API, Yahoo Finance  </br>
           </p>
-            <p>
-            🔹 **Features:** Mean reversion detection, real-time market execution, backtesting framework  
-          </p>
-            <p> 
-            🔹 **Data Sources:** IBKR API, Yahoo Finance  
-          </p>
-
+           
             
   
           {/* Link to GitHub */}
