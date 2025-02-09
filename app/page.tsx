@@ -89,7 +89,7 @@ export default function Page() {
             <ProjectCard
               title="Financial Data Visualization"
               description="Real-time stock charts with interactive analysis."
-              image="/placeholder.svg?height=400&width=600"
+              image="/portfolio.jpg?height=400&width=600"
               link="/projects/financial-visualization"
               tags={["Next.js", "Recharts", "API Integration"]}
             />
