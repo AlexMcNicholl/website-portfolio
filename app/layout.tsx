@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
-=======
 import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
->>>>>>> fd03747 (Finance Viz Project)
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,11 +7,7 @@ import ParticlesBackground from "./components/ParticlesBackground";
 
 
 
-<<<<<<< HEAD
-import type React from "react"; // Import React
-=======
 import React from "react"; // Import React
->>>>>>> fd03747 (Finance Viz Project)
 
 const inter = Inter({ subsets: ["latin"] });
 

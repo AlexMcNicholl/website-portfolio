@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Card } from "@/components/ui/card"
-=======
 import React from "react"
 import { Card } from "../../components/ui/card"
->>>>>>> fd03747 (Finance Viz Project)
 
 const technologies = [
   {
