@@ -5,7 +5,7 @@ export default function PairsTradingProject() {
       <div className="min-h-screen bg-background text-foreground p-6 flex flex-col items-center">
         <h1 className="text-5xl font-bold text-center mb-6">Pairs Trading Algorithm</h1>
         <p className="max-w-2xl text-lg text-center text-gray-400">
-          This project is a **statistical arbitrage trading algorithm** that identifies pairs of assets with correlated 
+          This project is a statistical arbitrage trading algorithm that identifies pairs of assets with correlated 
           price movements and executes **automated trades** when they diverge.
         </p>
   
