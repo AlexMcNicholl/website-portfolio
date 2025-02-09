@@ -7,8 +7,6 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // ✅ Enables static export (this was missing)
-
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -25,7 +23,7 @@ const nextConfig = {
   },
 }
 
-// ✅ Merge userConfig while ensuring `output: "export"` stays intact
+// ✅ Merge userConfig while ensuring API routes work
 mergeConfig(nextConfig, userConfig)
 
 function mergeConfig(nextConfig, userConfig) {
