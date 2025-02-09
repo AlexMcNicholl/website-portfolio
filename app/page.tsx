@@ -41,7 +41,8 @@ export default function Page() {
         <section id="about" className="w-full flex flex-col items-center py-24">
           <h1 className="text-5xl font-bold">FinTech Enthusiast</h1>
           <p className="max-w-lg text-gray-500 md:text-xl dark:text-gray-400">
-            Building different products for my enjoyment that can be used to interact and solve complex problems
+            Building different products for my enjoyment
+            <br>This site is a constant work in progress</br>
           </p>
           <div className="flex space-x-4 mt-6">
             <Link href="https://github.com/AlexMcNicholl" target="_blank">
