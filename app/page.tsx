@@ -81,13 +81,12 @@ export default function Page() {
           <h2 className="text-4xl font-bold mb-8">Projects</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <ProjectCard
-              title="Pairs Trading Algorithm"
-              description="Programmatic Trading with Statistical Arbitrage."
-              image="/9.webp?height=400&width=600"
-              slug= "pairs-trading"
-              link="/projects/pairs-trading"
-              github= "https://github.com/AlexMcNicholl/TradingAlgo"
-              tags={["Python Libraries", "SQL", "API Integration"]}
+                title="Pairs Trading Algorithm"
+                description="Programmatic Trading with Statistical Arbitrage."
+                image="/9.webp?height=400&width=600"
+                slug="pairs-trading" // ✅ This must match the project folder name
+                github="https://github.com/AlexMcNicholl/TradingAlgo" // ✅ GitHub link
+                tags={["Python Libraries", "SQL", "API Integration"]}
             />
             <ProjectCard
               title="Financial Data Visualization"
