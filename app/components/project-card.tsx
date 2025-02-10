@@ -8,21 +8,28 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  link: string;  // This should be the GitHub link
+  link: string; // This is the GitHub link
   tags: string[];
 }
 
 export default function ProjectCard({ title, description, image, link, tags }: ProjectCardProps) {
+  // Convert title to a URL-friendly slug
+  const projectSlug = `/projects/${title.toLowerCase().replace(/\s+/g, "-")}`;
+
   return (
     <Card className="overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-      <div className="relative aspect-video">
-        <Image
-          src={image || "/placeholder.svg"}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-300 hover:scale-110"
-        />
-      </div>
+      {/* Clickable Image that links to the project page */}
+      <Link href={projectSlug} passHref className="block">
+        <div className="relative aspect-video cursor-pointer">
+          <Image
+            src={image || "/placeholder.svg"}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+      </Link>
+
       <CardContent className="p-4">
         <h3 className="font-semibold text-xl mb-2">{title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
@@ -37,7 +44,9 @@ export default function ProjectCard({ title, description, image, link, tags }: P
           ))}
         </div>
       </CardContent>
+
       <CardFooter className="p-4 pt-0">
+        {/* GitHub link opens in a new tab */}
         <Link href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:underline">
           <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
           View on GitHub
