@@ -1,22 +1,13 @@
+"use client";
+
 import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "./lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticlesBackground from "./components/ParticlesBackground";
-
 import { SessionProvider } from "next-auth/react";
-
-export default function MyApp({ Component, pageProps }) {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
-}
-
-
-import React from "react"; // Import React
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,13 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <ParticlesBackground /> {/* Added Particles */}
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ParticlesBackground /> {/* Background Particles */}
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
