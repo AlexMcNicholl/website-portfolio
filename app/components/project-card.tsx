@@ -8,27 +8,21 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  link: string;
+  link: string;  // This should be the GitHub link
   tags: string[];
 }
 
 export default function ProjectCard({ title, description, image, link, tags }: ProjectCardProps) {
-  // If it's the "Pairs Trading" project, override the link to an internal Next.js route
-  const isPairsTrading = title === "Pairs Trading";
-  const projectLink = isPairsTrading ? "/projects/pairs-trading" : link;
-
   return (
     <Card className="overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-      <Link href={projectLink} className="block">
-        <div className="relative aspect-video">
-          <Image
-            src={image || "/placeholder.svg"}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-300 hover:scale-110"
-          />
-        </div>
-      </Link>
+      <div className="relative aspect-video">
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-110"
+        />
+      </div>
       <CardContent className="p-4">
         <h3 className="font-semibold text-xl mb-2">{title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
@@ -44,16 +38,10 @@ export default function ProjectCard({ title, description, image, link, tags }: P
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        {isPairsTrading ? (
-          <Link href="/projects/pairs-trading" className="inline-flex items-center gap-2 text-sm hover:underline">
-            📄 View Project Details
-          </Link>
-        ) : (
-          <Link href={https://github.com/AlexMcNicholl/TradingAlgo} target="_blank" className="inline-flex items-center gap-2 text-sm hover:underline">
-            <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
-            View on GitHub
-          </Link>
-        )}
+        <Link href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:underline">
+          <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
+          View on GitHub
+        </Link>
       </CardFooter>
     </Card>
   );
