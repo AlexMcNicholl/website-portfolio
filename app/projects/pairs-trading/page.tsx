@@ -6,18 +6,16 @@ export default function PairsTradingProject() {
         <h1 className="text-5xl font-bold text-center mb-6">Pairs Trading Algorithm</h1>
         <p className="max-w-2xl text-lg text-center text-gray-400">
           This project is a statistical arbitrage trading algorithm that identifies pairs of assets with correlated 
-          price movements and executes **automated trades** when they diverge.
+          price movements and executes <strong>automated trades</strong> when they diverge.
         </p>
   
         {/* Project Details */}
         <div className="max-w-3xl mt-8 space-y-4">
           <p>
-            🔹 **Built with:** Python, NumPy, Pandas, SciPy, SQL, and API integration  
-        <br>🔹 **Features:** Mean reversion detection, real-time market execution, backtesting framework </br>
-        <br>🔹 **Data Sources:** IBKR API, Yahoo Finance  </br>
+            🔹 <strong>Built with:</strong> Python, NumPy, Pandas, SciPy, SQL, and API integration  
+            <br /> 🔹 <strong>Features:</strong> Mean reversion detection, real-time market execution, backtesting framework  
+            <br /> 🔹 <strong>Data Sources:</strong> IBKR API, Yahoo Finance  
           </p>
-           
-            
   
           {/* Link to GitHub */}
           <a
@@ -38,5 +36,4 @@ export default function PairsTradingProject() {
         </div>
       </div>
     );
-  }
-  
+}
