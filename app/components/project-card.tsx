@@ -8,13 +8,13 @@ interface ProjectCardProps {
   title: string;
   description: string;
   image: string;
-  link: string; // This is the GitHub link
+  slug: string; // This is used for internal navigation
+  github: string; // Separate GitHub link
   tags: string[];
 }
 
-export default function ProjectCard({ title, description, image, link, tags }: ProjectCardProps) {
-  // Convert title to a URL-friendly slug
-  const projectSlug = `/projects/${title.toLowerCase().replace(/\s+/g, "-")}`;
+export default function ProjectCard({ title, description, image, slug, github, tags }: ProjectCardProps) {
+  const projectSlug = `/projects/${slug}`;
 
   return (
     <Card className="overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
@@ -31,7 +31,9 @@ export default function ProjectCard({ title, description, image, link, tags }: P
       </Link>
 
       <CardContent className="p-4">
-        <h3 className="font-semibold text-xl mb-2">{title}</h3>
+        <h3 className="font-semibold text-xl mb-2">
+          <Link href={projectSlug} className="hover:underline">{title}</Link>
+        </h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
@@ -47,7 +49,7 @@ export default function ProjectCard({ title, description, image, link, tags }: P
 
       <CardFooter className="p-4 pt-0">
         {/* GitHub link opens in a new tab */}
-        <Link href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:underline">
+        <Link href={github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm hover:underline">
           <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
           View on GitHub
         </Link>
