@@ -1,19 +1,18 @@
-import { notFound } from "next/navigation";
-import { useParams } from "next/navigation";
+"use client"; // This makes it a Client Component
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import projectsData from "@/data/projects"; // Import the projects data
 
 export default function ProjectPage() {
-  // Get the project slug from the URL
-  const params = useParams();
-  const { slug } = params;
+  const router = useRouter();
+  const slug = router.query?.slug as string; // Get the project slug from the URL
 
-  // Find the project that matches the slug
   const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) {
-    return notFound();
+    return <div className="text-center text-red-500 text-xl font-semibold">Project not found</div>;
   }
 
   return (
