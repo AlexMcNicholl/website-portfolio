@@ -5,6 +5,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticlesBackground from "./components/ParticlesBackground";
 
+import { SessionProvider } from "next-auth/react";
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
 
 
 import React from "react"; // Import React
