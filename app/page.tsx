@@ -84,7 +84,9 @@ export default function Page() {
               title="Pairs Trading Algorithm"
               description="Programmatic Trading with Statistical Arbitrage."
               image="/9.webp?height=400&width=600"
+              slug= "pairs-trading"
               link="/projects/pairs-trading"
+              github= "https://github.com/AlexMcNicholl/TradingAlgo"
               tags={["Python Libraries", "SQL", "API Integration"]}
             />
             <ProjectCard
