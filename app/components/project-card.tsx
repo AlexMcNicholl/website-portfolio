@@ -49,7 +49,7 @@ export default function ProjectCard({ title, description, image, link, tags }: P
             📄 View Project Details
           </Link>
         ) : (
-          <Link href={link} target="_blank" className="inline-flex items-center gap-2 text-sm hover:underline">
+          <Link href={https://github.com/AlexMcNicholl/TradingAlgo} target="_blank" className="inline-flex items-center gap-2 text-sm hover:underline">
             <Github className="h-4 w-4 transition-all duration-300 hover:text-blue-400" />
             View on GitHub
           </Link>
