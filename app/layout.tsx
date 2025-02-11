@@ -1,11 +1,10 @@
 import { ThemeProvider } from "./components/theme-provider";
+import CustomSessionProvider from "./components/SessionProvider"; // Import the client session provider
 import { cn } from "./lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticlesBackground from "./components/ParticlesBackground";
-import { SessionProvider } from "next-auth/react";
-import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,21 +13,17 @@ export const metadata: Metadata = {
   description: "Portfolio to show off my skills",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <ParticlesBackground /> {/* Background Particles */}
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ParticlesBackground />
+          <CustomSessionProvider> {/* Wrap everything inside the session provider */}
             {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
+          </CustomSessionProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

@@ -1,13 +1,13 @@
-"use client"; // This makes it a Client Component
+"use client"; // Ensure it's a Client Component
 
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import projectsData from "@/data/projects"; // Import the projects data
 
 export default function ProjectPage() {
-  const router = useRouter();
-  const slug = router.query?.slug as string; // Get the project slug from the URL
+  const params = useParams(); // Get URL params
+  const slug = params?.slug as string; // Get the project slug from the URL
 
   const project = projectsData.find((p) => p.slug === slug);
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import ContactForm from "./components/contact-form";
@@ -92,7 +94,8 @@ export default function Page() {
               title="Financial Data Visualization"
               description="Real-time stock charts with interactive analysis."
               image="/portfolio.jpg?height=400&width=600"
-              link="/projects/financial-visualization"
+              slug="financial-visualization"
+              github="https://github.com/AlexMcNicholl/TradingAlgo" 
               tags={["Next.js", "Recharts", "API Integration"]}
             />
           </div>
