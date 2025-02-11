@@ -11,35 +11,31 @@ export default function PairsTradingProject() {
   async function analyzePair() {
     setLoading(true);
     setError("");
-    setResult(null); // Reset result before new request
-
+  
     try {
       const response = await fetch("/api/run-python", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ stock1, stock2 }),
       });
-
-      if (!response.ok) {
-        throw new Error("Error processing request.");
-      }
-
+  
       const rawData = await response.json();
-
-      // ✅ FIX: Properly parse JSON response
-      const data = typeof rawData.result === "string" ? JSON.parse(rawData.result) : rawData.result;
-
-      if (!data || typeof data.p_value === "undefined") {
-        throw new Error("Invalid API response.");
+  
+      if (!response.ok) {
+        throw new Error(rawData.error || "Error processing request.");
       }
-
-      setResult(data);
+  
+      // ✅ FIX: Parse the nested JSON correctly
+      const parsedData = typeof rawData.result === "string" ? JSON.parse(rawData.result) : rawData.result;
+  
+      setResult(parsedData);
     } catch (err: any) {
-      setError(err.message || "An error occurred.");
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   }
+  
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6 flex flex-col items-center">

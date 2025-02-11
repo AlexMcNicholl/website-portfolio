@@ -14,8 +14,12 @@ export async function POST(req: Request) {
 
         console.log(`📂 Using scriptPath: ${scriptPath}`);
 
-        // ✅ Spawn a new process to run Python script
-        const process = spawn("python3", [scriptPath, stock1, stock2]);
+        // ✅ Check if Python is installed
+        const pythonPath = "python3"; // Change to "python" if on Windows
+        console.log(`🐍 Using Python path: ${pythonPath}`);
+
+        // ✅ Run the Python script
+        const process = spawn(pythonPath, [scriptPath, stock1, stock2]);
 
         return new Promise((resolve, reject) => {
             let output = "";
@@ -23,10 +27,12 @@ export async function POST(req: Request) {
 
             process.stdout.on("data", (data) => {
                 output += data.toString();
+                console.log(`📜 Python Output: ${output}`);
             });
 
             process.stderr.on("data", (data) => {
                 errorOutput += data.toString();
+                console.error(`❌ Python Error: ${errorOutput}`);
             });
 
             process.on("close", (code) => {
@@ -36,9 +42,9 @@ export async function POST(req: Request) {
                     return;
                 }
 
-                console.log(`✅ Python script output: ${output}`);
                 try {
                     const parsedData = JSON.parse(output.trim());
+                    console.log(`✅ Parsed Python Output: ${JSON.stringify(parsedData, null, 2)}`);
                     resolve(NextResponse.json(parsedData));
                 } catch (error) {
                     console.error("❌ Failed to parse Python response:", output);
