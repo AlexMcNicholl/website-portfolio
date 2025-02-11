@@ -11,6 +11,7 @@ export default function PairsTradingProject() {
   async function analyzePair() {
     setLoading(true);
     setError("");
+    setResult(null); // Reset result before new request
 
     try {
       const response = await fetch("/api/run-python", {
@@ -19,14 +20,22 @@ export default function PairsTradingProject() {
         body: JSON.stringify({ stock1, stock2 }),
       });
 
-      const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || "Error processing request.");
+        throw new Error("Error processing request.");
+      }
+
+      const rawData = await response.json();
+
+      // ✅ FIX: Properly parse JSON response
+      const data = typeof rawData.result === "string" ? JSON.parse(rawData.result) : rawData.result;
+
+      if (!data || typeof data.p_value === "undefined") {
+        throw new Error("Invalid API response.");
       }
 
       setResult(data);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "An error occurred.");
     } finally {
       setLoading(false);
     }
@@ -60,14 +69,14 @@ export default function PairsTradingProject() {
         </button>
       </div>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 font-bold">{error}</p>}
 
       {result && (
         <div className="mt-6 p-4 border rounded-lg shadow-lg max-w-md text-center">
           <h2 className="text-xl font-semibold">Results:</h2>
-          <p><strong>Cointegration Test (p-value):</strong> {result.p_value.toFixed(4)}</p>
-          <p><strong>ADF Test (Stock 1):</strong> {result.adf_stock1.toFixed(4)}</p>
-          <p><strong>ADF Test (Stock 2):</strong> {result.adf_stock2.toFixed(4)}</p>
+          <p><strong>Cointegration Test (p-value):</strong> {result.p_value?.toFixed(4)}</p>
+          <p><strong>ADF Test (Stock 1):</strong> {result.adf_stock1?.toFixed(4)}</p>
+          <p><strong>ADF Test (Stock 2):</strong> {result.adf_stock2?.toFixed(4)}</p>
           {result.p_value < 0.05 ? (
             <p className="text-green-500 font-bold">✅ Statistically Significant Pair</p>
           ) : (
