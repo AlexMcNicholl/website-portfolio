@@ -57,7 +57,7 @@ export default function PairsTradingProject() {
             setAssetClass(e.target.value);
             setSubCategory(""); // Reset subcategory when asset class changes
           }}
-          className="border p-2 rounded"
+          className="border p-2 rounded text-black"
         >
           {Object.keys(assetOptions).map((option) => (
             <option key={option} value={option}>
@@ -73,7 +73,7 @@ export default function PairsTradingProject() {
             <select
               value={subCategory}
               onChange={(e) => setSubCategory(e.target.value)}
-              className="border p-2 rounded"
+              className="border p-2 rounded text-black"
             >
               <option value="">Select Category</option>
               {assetOptions[assetClass as keyof typeof assetOptions]?.map((option) => (
@@ -92,7 +92,7 @@ export default function PairsTradingProject() {
           type="number"
           value={universeSize}
           onChange={(e) => setUniverseSize(Number(e.target.value))}
-          className="border p-2 rounded"
+          className="border p-2 rounded text-black"
           min={2}
           max={100}
         />
