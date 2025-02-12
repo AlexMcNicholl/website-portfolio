@@ -5,21 +5,24 @@ import path from "path";
 
 export async function POST(req: Request) {
     try {
-        const { stock1, stock2 } = await req.json();
-        console.log(`🔍 Received request for stocks: ${stock1}, ${stock2}`);
+        const { assetClass, subCategory, universeSize } = await req.json();
+        console.log(`🔍 Received request: Asset Class: ${assetClass}, Category: ${subCategory}, Universe Size: ${universeSize}`);
 
-        // ✅ Get the absolute path of the Python script correctly
+        // ✅ Get the absolute path of the Python script
         const __dirname = path.dirname(fileURLToPath(import.meta.url));
         const scriptPath = path.join(__dirname, "../../python/Coint_Valid.py"); // Adjust if needed
 
-        console.log(`📂 Using scriptPath: ${scriptPath}`);
+        console.log(`📂 Using script path: ${scriptPath}`);
 
-        // ✅ Check if Python is installed
-        const pythonPath = "python3"; // Change to "python" if on Windows
+        // ✅ Define Python executable
+        const pythonPath = "python3"; // Use "python" on Windows if necessary
         console.log(`🐍 Using Python path: ${pythonPath}`);
 
-        // ✅ Run the Python script
-        const process = spawn(pythonPath, [scriptPath, stock1, stock2]);
+        // ✅ Prepare JSON input for Python script
+        const inputData = JSON.stringify({ assetClass, subCategory, universeSize });
+
+        // ✅ Run the Python script with JSON input
+        const process = spawn(pythonPath, [scriptPath, inputData]);
 
         return new Promise((resolve, reject) => {
             let output = "";

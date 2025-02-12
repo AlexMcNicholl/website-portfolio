@@ -127,13 +127,32 @@ export default function PairsTradingProject() {
       {result && (
         <div className="mt-6 p-4 border rounded-lg shadow-lg max-w-md text-center">
           <h2 className="text-xl font-semibold">Results:</h2>
-          <p><strong>Cointegration Test (p-value):</strong> {result.p_value.toFixed(4)}</p>
-          <p><strong>Optimal Pairs Found:</strong> {result.optimal_pairs.join(", ")}</p>
-          {result.p_value < 0.05 ? (
-            <p className="text-green-500 font-bold">✅ Statistically Significant Pairs</p>
-          ) : (
-            <p className="text-red-500 font-bold">❌ No Significant Pairs</p>
-          )}
+          <p className="font-bold text-lg">🔥 Best Pair: {result.best_pair ? `${result.best_pair[0]} & ${result.best_pair[1]}` : "N/A"}</p>
+
+          <table className="mt-4 border-collapse border border-gray-300 w-full">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border p-2">Stock 1</th>
+                <th className="border p-2">Stock 2</th>
+                <th className="border p-2">Corr</th>
+                <th className="border p-2">P-Value</th>
+                <th className="border p-2">ADF 1</th>
+                <th className="border p-2">ADF 2</th>
+              </tr>
+            </thead>
+            <tbody>
+              {result.results.map((pair: any, index: number) => (
+                <tr key={index} className="border">
+                  <td className="border p-2">{pair.stock1}</td>
+                  <td className="border p-2">{pair.stock2}</td>
+                  <td className="border p-2">{pair.correlation.toFixed(2)}</td>
+                  <td className="border p-2">{pair.p_value.toFixed(4)}</td>
+                  <td className="border p-2">{pair.adf_stock1.toFixed(4)}</td>
+                  <td className="border p-2">{pair.adf_stock2.toFixed(4)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
 
