@@ -29,7 +29,7 @@ export default function PairsTradingProject() {
     setResult(null);
 
     try {
-      const response = await fetch("http://alexmcnicholl.site/api/pairs-trading", {
+      const response = await fetch("https://alexmcnicholl.site/api/pairs-trading", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assetClass, subCategory, universeSize }),
