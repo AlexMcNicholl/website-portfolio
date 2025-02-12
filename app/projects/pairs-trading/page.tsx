@@ -4,13 +4,21 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function PairsTradingProject() {
-  const [stock1, setStock1] = useState("");
-  const [stock2, setStock2] = useState("");
+  const [assetClass, setAssetClass] = useState("Equities");
+  const [subCategory, setSubCategory] = useState("");
+  const [universeSize, setUniverseSize] = useState(10);
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const router = useRouter(); // ✅ Router to navigate to backtesting page
+  const router = useRouter();
+
+  // Asset class options
+  const assetOptions = {
+    Equities: ["Tech", "Finance", "Energy", "Healthcare","Pharmaceutical", "Utilities"," Industrials"],
+    Commodities: ["Gold", "Oil", "Silver", "Copper"],
+    "FX Rates": ["EUR/USD", "GBP/USD", "USD/JPY", "USD/CAD"],
+  };
 
   async function analyzePair() {
     setLoading(true);
@@ -20,7 +28,7 @@ export default function PairsTradingProject() {
       const response = await fetch("/api/run-python", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ stock1, stock2 }),
+        body: JSON.stringify({ assetClass, subCategory, universeSize }),
       });
 
       const data = await response.json();
@@ -40,45 +48,78 @@ export default function PairsTradingProject() {
     <div className="min-h-screen bg-background text-foreground p-6 flex flex-col items-center">
       <h1 className="text-4xl font-bold text-center mb-6">Pairs Trading Analysis</h1>
 
-      {/* Stock Input Fields */}
-      <div className="flex gap-4 mb-4">
-        <input
-          type="text"
-          placeholder="Enter first stock (e.g., AAPL)"
+      {/* Asset Selection */}
+      <div className="flex flex-col gap-4 mb-4 w-full max-w-md">
+        <label className="font-semibold">Select Asset Class:</label>
+        <select
+          value={assetClass}
+          onChange={(e) => {
+            setAssetClass(e.target.value);
+            setSubCategory(""); // Reset subcategory when asset class changes
+          }}
           className="border p-2 rounded"
-          value={stock1}
-          onChange={(e) => setStock1(e.target.value.toUpperCase())}
-        />
-        <input
-          type="text"
-          placeholder="Enter second stock (e.g., MSFT)"
-          className="border p-2 rounded"
-          value={stock2}
-          onChange={(e) => setStock2(e.target.value.toUpperCase())}
-        />
-        <button
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          onClick={analyzePair}
-          disabled={loading}
         >
-          {loading ? "Analyzing..." : "Analyze Pair"}
-        </button>
+          {Object.keys(assetOptions).map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+
+      {/* Subcategory Dropdown */}
+          {assetOptions[assetClass as keyof typeof assetOptions] && (
+  <>
+            <label className="font-semibold">Select {assetClass} Category:</label>
+            <select
+              value={subCategory}
+              onChange={(e) => setSubCategory(e.target.value)}
+              className="border p-2 rounded"
+            >
+              <option value="">Select Category</option>
+              {assetOptions[assetClass as keyof typeof assetOptions]?.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </>
+)}
+ 
+
+        {/* Universe Size Selection */}
+        <label className="font-semibold">Select Universe Size:</label>
+        <input
+          type="number"
+          value={universeSize}
+          onChange={(e) => setUniverseSize(Number(e.target.value))}
+          className="border p-2 rounded"
+          min={2}
+          max={100}
+        />
       </div>
 
-      {/* Display Errors if Any */}
-      {error && <p className="text-red-500">{error}</p>}
+      {/* Analyze Button */}
+      <button
+        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+        onClick={analyzePair}
+        disabled={loading || !subCategory}
+      >
+        {loading ? "Analyzing..." : "Analyze Pairs"}
+      </button>
+
+      {/* Error Handling */}
+      {error && <p className="text-red-500 mt-4">{error}</p>}
 
       {/* Display Results */}
       {result && (
         <div className="mt-6 p-4 border rounded-lg shadow-lg max-w-md text-center">
           <h2 className="text-xl font-semibold">Results:</h2>
           <p><strong>Cointegration Test (p-value):</strong> {result.p_value.toFixed(4)}</p>
-          <p><strong>ADF Test (Stock 1):</strong> {result.adf_stock1.toFixed(4)}</p>
-          <p><strong>ADF Test (Stock 2):</strong> {result.adf_stock2.toFixed(4)}</p>
+          <p><strong>Optimal Pairs Found:</strong> {result.optimal_pairs.join(", ")}</p>
           {result.p_value < 0.05 ? (
-            <p className="text-green-500 font-bold">✅ Statistically Significant Pair</p>
+            <p className="text-green-500 font-bold">✅ Statistically Significant Pairs</p>
           ) : (
-            <p className="text-red-500 font-bold">❌ Not a Significant Pair</p>
+            <p className="text-red-500 font-bold">❌ No Significant Pairs</p>
           )}
         </div>
       )}
@@ -87,7 +128,7 @@ export default function PairsTradingProject() {
       {result && (
         <button
           className="px-4 py-2 mt-6 bg-green-600 text-white rounded hover:bg-green-700 transition"
-          onClick={() => router.push(`/projects/pairs-trading/backtest?stock1=${stock1}&stock2=${stock2}`)}
+          onClick={() => router.push(`/projects/pairs-trading/backtest?assetClass=${assetClass}&subCategory=${subCategory}&universeSize=${universeSize}`)}
         >
           🚀 Perform Trading and Backtest
         </button>
