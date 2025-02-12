@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function PairsTradingProject() {
   const [stock1, setStock1] = useState("");
@@ -91,6 +92,13 @@ export default function PairsTradingProject() {
           🚀 Perform Trading and Backtest
         </button>
       )}
+
+      {/* 🔙 Return to Home Button */}
+      <Link href="/">
+        <button className="mt-6 px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700">
+          🔙 Return to Home
+        </button>
+      </Link>
     </div>
   );
 }
