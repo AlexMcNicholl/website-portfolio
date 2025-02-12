@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function PairsTradingProject() {
   const [assetClass, setAssetClass] = useState("Equities");
-  const [subCategory, setSubCategory] = useState("");
-  const [universeSize, setUniverseSize] = useState(10);
+  const [subCategory, setSubCategory] = useState("-");
+  const [universeSize, setUniverseSize] = useState("10");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -14,11 +14,14 @@ export default function PairsTradingProject() {
   const router = useRouter();
 
   // Asset class options
-  const assetOptions = {
-    Equities: ["Tech", "Finance", "Energy", "Healthcare","Pharmaceutical", "Utilities"," Industrials"],
-    Commodities: ["Gold", "Oil", "Silver", "Copper"],
-    "FX Rates": ["EUR/USD", "GBP/USD", "USD/JPY", "USD/CAD"],
+  const assetOptions: Record<string, string[]> = {
+    Equities: ["Tech", "Finance", "Energy", "Healthcare", "Pharmaceutical", "Utilities", "Industrials"],
+    Commodities: [],
+    "FX Rates": [],
   };
+
+  // Universe size options
+  const universeOptions = ["5", "10", "50", "100"];
 
   async function analyzePair() {
     setLoading(true);
@@ -55,7 +58,7 @@ export default function PairsTradingProject() {
           value={assetClass}
           onChange={(e) => {
             setAssetClass(e.target.value);
-            setSubCategory(""); // Reset subcategory when asset class changes
+            setSubCategory("-"); // Reset category for Commodities/FX Rates
           }}
           className="border p-2 rounded text-black"
         >
@@ -66,43 +69,53 @@ export default function PairsTradingProject() {
           ))}
         </select>
 
-      {/* Subcategory Dropdown */}
-          {assetOptions[assetClass as keyof typeof assetOptions] && (
-  <>
-            <label className="font-semibold">Select {assetClass} Category:</label>
-            <select
-              value={subCategory}
-              onChange={(e) => setSubCategory(e.target.value)}
-              className="border p-2 rounded text-black"
-            >
-              <option value="">Select Category</option>
-              {assetOptions[assetClass as keyof typeof assetOptions]?.map((option) => (
+        {/* Subcategory Dropdown - Show only if Equities, otherwise "-" */}
+        <label className="font-semibold">Select {assetClass} Category:</label>
+        <select
+          value={subCategory}
+          onChange={(e) => setSubCategory(e.target.value)}
+          className="border p-2 rounded text-black"
+          disabled={assetOptions[assetClass].length === 0} // Disable for Commodities/FX Rates
+        >
+          {assetOptions[assetClass].length > 0 ? (
+            <>
+              <option value="-">Select Category</option>
+              {assetOptions[assetClass].map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
               ))}
-            </select>
-          </>
-)}
- 
+            </>
+          ) : (
+            <option value="-">-</option>
+          )}
+        </select>
 
-        {/* Universe Size Selection */}
+        {/* Universe Size Dropdown - Disabled if Commodities/FX Rates */}
         <label className="font-semibold">Select Universe Size:</label>
-        <input
-          type="number"
+        <select
           value={universeSize}
-          onChange={(e) => setUniverseSize(Number(e.target.value))}
+          onChange={(e) => setUniverseSize(e.target.value)}
           className="border p-2 rounded text-black"
-          min={2}
-          max={100}
-        />
+          disabled={assetOptions[assetClass].length === 0} // Disable for Commodities/FX Rates
+        >
+          {assetOptions[assetClass].length > 0 ? (
+            universeOptions.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))
+          ) : (
+            <option value="-">-</option>
+          )}
+        </select>
       </div>
 
       {/* Analyze Button */}
       <button
         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         onClick={analyzePair}
-        disabled={loading || !subCategory}
+        disabled={loading || !subCategory || subCategory === "-"}
       >
         {loading ? "Analyzing..." : "Analyze Pairs"}
       </button>
