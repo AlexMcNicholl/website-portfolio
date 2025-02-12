@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function PairsTradingProject() {
   const [assetClass, setAssetClass] = useState("Equities");
-  const [subCategory, setSubCategory] = useState("-");
+  const [subCategory, setSubCategory] = useState("All");
   const [universeSize, setUniverseSize] = useState("10");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ export default function PairsTradingProject() {
     setResult(null);
 
     try {
-      const response = await fetch("/api/pairs-trading/route", {
+      const response = await fetch("/api/pairs-trading", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assetClass, subCategory, universeSize }),
@@ -59,7 +59,7 @@ export default function PairsTradingProject() {
           value={assetClass}
           onChange={(e) => {
             setAssetClass(e.target.value);
-            setSubCategory("-"); // Reset category for Commodities/FX Rates
+            setSubCategory("All"); // Default category for Commodities/FX Rates
           }}
           className="border p-2 rounded text-black"
         >
@@ -70,7 +70,7 @@ export default function PairsTradingProject() {
           ))}
         </select>
 
-        {/* Subcategory Dropdown - Show only if Equities, otherwise "-" */}
+        {/* Subcategory Dropdown - Show only if Equities, otherwise "All" */}
         <label className="font-semibold">Select {assetClass} Category:</label>
         <select
           value={subCategory}
@@ -80,7 +80,7 @@ export default function PairsTradingProject() {
         >
           {assetOptions[assetClass].length > 0 ? (
             <>
-              <option value="-">Select Category</option>
+              <option value="All">All</option>
               {assetOptions[assetClass].map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -88,27 +88,22 @@ export default function PairsTradingProject() {
               ))}
             </>
           ) : (
-            <option value="-">-</option>
+            <option value="All">All</option>
           )}
         </select>
 
-        {/* Universe Size Dropdown - Disabled if Commodities/FX Rates */}
+        {/* Universe Size Dropdown */}
         <label className="font-semibold">Select Universe Size:</label>
         <select
           value={universeSize}
           onChange={(e) => setUniverseSize(e.target.value)}
           className="border p-2 rounded text-black"
-          disabled={assetOptions[assetClass].length === 0} // Disable for Commodities/FX Rates
         >
-          {assetOptions[assetClass].length > 0 ? (
-            universeOptions.map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))
-          ) : (
-            <option value="-">-</option>
-          )}
+          {universeOptions.map((size) => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -116,7 +111,7 @@ export default function PairsTradingProject() {
       <button
         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         onClick={analyzePair}
-        disabled={loading || subCategory === "-"}
+        disabled={loading}
       >
         {loading ? "Analyzing..." : "Analyze Pairs"}
       </button>
@@ -128,41 +123,13 @@ export default function PairsTradingProject() {
       {result && (
         <div className="mt-6 p-4 border rounded-lg shadow-lg max-w-md text-center">
           <h2 className="text-xl font-semibold">Results:</h2>
-
-          {/* Best Pair Display */}
           <p className="font-bold text-lg">
             🔥 Best Pair: {result.best_pair ? `${result.best_pair[0]} & ${result.best_pair[1]}` : "N/A"}
           </p>
-
-          {/* Results Table */}
-          <table className="mt-4 border-collapse border border-gray-300 w-full">
-            <thead>
-              <tr className="bg-gray-200">
-                <th className="border p-2">Stock 1</th>
-                <th className="border p-2">Stock 2</th>
-                <th className="border p-2">Corr</th>
-                <th className="border p-2">P-Value</th>
-                <th className="border p-2">ADF 1</th>
-                <th className="border p-2">ADF 2</th>
-              </tr>
-            </thead>
-            <tbody>
-              {result.results.map((pair: any, index: number) => (
-                <tr key={index} className="border">
-                  <td className="border p-2">{pair.stock1}</td>
-                  <td className="border p-2">{pair.stock2}</td>
-                  <td className="border p-2">{pair.correlation.toFixed(2)}</td>
-                  <td className="border p-2">{pair.p_value.toFixed(4)}</td>
-                  <td className="border p-2">{pair.adf_stock1.toFixed(4)}</td>
-                  <td className="border p-2">{pair.adf_stock2.toFixed(4)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       )}
 
-      {/* 🚀 Perform Trading & Backtest Button */}
+      {/* Perform Trading & Backtest Button */}
       {result && (
         <button
           className="px-4 py-2 mt-6 bg-green-600 text-white rounded hover:bg-green-700 transition"
@@ -172,7 +139,7 @@ export default function PairsTradingProject() {
         </button>
       )}
 
-      {/* 🔙 Return to Home Button */}
+      {/* Return to Home Button */}
       <Link href="/">
         <button className="mt-6 px-4 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700">
           🔙 Return to Home
