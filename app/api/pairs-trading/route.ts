@@ -8,7 +8,12 @@ export async function POST(req: Request) {
         const body = await req.json();
         console.log("📥 Received request:", body);
 
-        // Get the absolute path of the Python script
+        // Ensure all required parameters are present
+        if (!body.assetClass || !body.subCategory || !body.universeSize) {
+            return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
+        }
+
+        // Get the Python script path
         const __dirname = path.dirname(fileURLToPath(import.meta.url));
         const scriptPath = path.join(__dirname, "../../../python/Coint_Valid.py");
 
@@ -46,6 +51,7 @@ export async function POST(req: Request) {
                 }
             });
         });
+
     } catch (error) {
         console.error("❌ API Error:", error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
