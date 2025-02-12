@@ -26,6 +26,7 @@ export default function PairsTradingProject() {
   async function analyzePair() {
     setLoading(true);
     setError("");
+    setResult(null);
 
     try {
       const response = await fetch("/api/run-python", {
@@ -115,7 +116,7 @@ export default function PairsTradingProject() {
       <button
         className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
         onClick={analyzePair}
-        disabled={loading || !subCategory || subCategory === "-"}
+        disabled={loading || subCategory === "-"}
       >
         {loading ? "Analyzing..." : "Analyze Pairs"}
       </button>
@@ -127,8 +128,13 @@ export default function PairsTradingProject() {
       {result && (
         <div className="mt-6 p-4 border rounded-lg shadow-lg max-w-md text-center">
           <h2 className="text-xl font-semibold">Results:</h2>
-          <p className="font-bold text-lg">🔥 Best Pair: {result.best_pair ? `${result.best_pair[0]} & ${result.best_pair[1]}` : "N/A"}</p>
 
+          {/* Best Pair Display */}
+          <p className="font-bold text-lg">
+            🔥 Best Pair: {result.best_pair ? `${result.best_pair[0]} & ${result.best_pair[1]}` : "N/A"}
+          </p>
+
+          {/* Results Table */}
           <table className="mt-4 border-collapse border border-gray-300 w-full">
             <thead>
               <tr className="bg-gray-200">
