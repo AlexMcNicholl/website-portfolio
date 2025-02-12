@@ -16,7 +16,7 @@ export async function POST(req: Request) {
                 assetClass: body.assetClass,
                 subCategory: body.subCategory,
                 universeSize: body.universeSize,
-                pairs: [] // Replace with real data processing
+                pairs: ["MSFT", "AMZN"] // Replace with real data processing
             }
         };
 
