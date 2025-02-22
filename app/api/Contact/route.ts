@@ -3,8 +3,18 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
+    if (req.method !== 'POST') {
+      console.error("Method not allowed");
+      return NextResponse.json({ success: false, error: 'Method Not Allowed' }, { status: 405 });
+    }
+
     const body = await req.text(); // Read the request body as text
     console.log("Raw request body:", body); // Log the raw request body
+
+    if (!body) {
+      console.error("Request body is empty");
+      return NextResponse.json({ success: false, error: 'Request body is empty.' }, { status: 400 });
+    }
 
     const { name, email, message } = JSON.parse(body); // Parse the JSON body
     console.log("Parsed form submission:", { name, email, message });
@@ -33,8 +43,8 @@ export async function POST(req: Request) {
     };
 
     // Send email
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully");
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully", info);
 
     return NextResponse.json({ success: true });
   } catch (error) {

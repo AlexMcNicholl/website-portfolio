@@ -44,7 +44,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
     try {
       console.log("Submitting form data:", formData) // Log form data
       const response = await fetch("/api/contact", {
-        method: "POST",
+        method: "POST", // Ensure the method is POST
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
