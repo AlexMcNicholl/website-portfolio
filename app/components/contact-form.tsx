@@ -31,8 +31,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault() // Prevent default form submission
     setPending(true)
+    setMessage("")
+    setErrorMessage("") // Clear previous messages
 
     try {
+      console.log("Submitting form data:", formData) // Log form data
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,19 +43,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
       })
 
       const result = await response.json()
+      console.log("Response received:", response) // Log response
+      console.log("Result received:", result) // Log result
 
       if (response.ok) {
         setMessage("Message sent successfully!")
-        setErrorMessage("") // Clear error message on success
       } else {
         console.error("Error response:", result);
-        setMessage("")
         setErrorMessage(result.error || "Something went wrong. Please try again.") // Set error message
         onError(result.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessage("")
       setErrorMessage("Something went wrong. Please try again.") // Set error message
       onError("Something went wrong. Please try again.");
     } finally {
