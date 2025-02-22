@@ -3,9 +3,17 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = await req.json();
-    console.log("Received form submission:", { name, email, message });
-    console.log("Request details:", req);
+    const body = await req.text(); // Read the request body as text
+    console.log("Raw request body:", body); // Log the raw request body
+
+    const { name, email, message } = JSON.parse(body); // Parse the JSON body
+    console.log("Parsed form submission:", { name, email, message });
+
+    // Validate input
+    if (!name || !email || !message) {
+      console.error("Validation failed: Missing fields");
+      return NextResponse.json({ success: false, error: 'All fields are required.' }, { status: 400 });
+    }
 
     // Create a Nodemailer transporter
     const transporter = nodemailer.createTransport({
