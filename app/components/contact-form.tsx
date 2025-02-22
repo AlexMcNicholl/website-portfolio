@@ -6,7 +6,11 @@ import { Card } from "../../components/ui/card"
 import { Input } from "../../components/ui/input"
 import { Textarea } from "../../components/ui/textarea"
 
-export default function ContactForm() {
+interface ContactFormProps {
+  onError: (errorMessage: string) => void;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -43,6 +47,7 @@ export default function ContactForm() {
       }
     } catch (error) {
       setMessage("Something went wrong. Please try again.")
+      onError("Something went wrong. Please try again.");
     } finally {
       setPending(false)
     }
@@ -77,3 +82,5 @@ export default function ContactForm() {
     </Card>
   )
 }
+
+export default ContactForm;
