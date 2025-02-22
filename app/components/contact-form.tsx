@@ -40,12 +40,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
 
       const result = await response.json()
 
-      if (result.success) {
+      if (response.ok) {
         setMessage("Message sent successfully!")
       } else {
+        console.error("Error response:", result);
         setMessage("Something went wrong. Please try again.")
+        onError(result.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
+      console.error("Error sending message:", error);
       setMessage("Something went wrong. Please try again.")
       onError("Something went wrong. Please try again.");
     } finally {
