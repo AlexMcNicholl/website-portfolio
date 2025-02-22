@@ -46,13 +46,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
         setErrorMessage("") // Clear error message on success
       } else {
         console.error("Error response:", result);
-        setMessage("Something went wrong. Please try again.")
+        setMessage("")
         setErrorMessage(result.error || "Something went wrong. Please try again.") // Set error message
         onError(result.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setMessage("Something went wrong. Please try again.")
+      setMessage("")
       setErrorMessage("Something went wrong. Please try again.") // Set error message
       onError("Something went wrong. Please try again.");
     } finally {
