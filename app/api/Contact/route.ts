@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function POST(req: { json: () => PromiseLike<{ name: any; email: any; message: any; }> | { name: any; email: any; message: any; }; }) {
+export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
     console.log("Received form submission:", { name, email, message });
@@ -9,6 +9,7 @@ export async function POST(req: { json: () => PromiseLike<{ name: any; email: an
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error("Error processing form submission:", error);
+    return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
   }
 }
