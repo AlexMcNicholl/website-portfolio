@@ -34,6 +34,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
     setMessage("")
     setErrorMessage("") // Clear previous messages
 
+    // Validate form data
+    if (!formData.name || !formData.email || !formData.message) {
+      setErrorMessage("All fields are required.")
+      setPending(false)
+      return
+    }
+
     try {
       console.log("Submitting form data:", formData) // Log form data
       const response = await fetch("/api/contact", {
@@ -50,13 +57,13 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
         setMessage("Message sent successfully!")
       } else {
         console.error("Error response:", result);
-        setErrorMessage(result.error || "Something went wrong. Please try again.") // Set error message
-        onError(result.error || "Something went wrong. Please try again.");
+        setErrorMessage(result.error || `Error: ${response.status} ${response.statusText}`) // Set error message
+        onError(result.error || `Error: ${response.status} ${response.statusText}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setErrorMessage("Something went wrong. Please try again.") // Set error message
-      onError("Something went wrong. Please try again.");
+      setErrorMessage(`Error: ${error.message}`) // Set detailed error message
+      onError(`Error: ${error.message}`);
     } finally {
       setPending(false)
     }
