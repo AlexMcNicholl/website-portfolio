@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Alex McNicholl - FinTech",
-  description: "Portfolio to show off my skills",
+  description: "Portfolio to show off my skills", // Update this line
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

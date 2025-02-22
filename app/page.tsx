@@ -93,7 +93,7 @@ export default function Page() {
             <ProjectCard
               title="Financial Data Visualization"
               description="Real-time stock charts with interactive analysis."
-              image="/portfolio.jpg?height=400&width=600"
+              image="/portfolio.jpg?height=400&width=600" // Update this line
               slug="financial-visualization"
               github="https://github.com/AlexMcNicholl/TradingAlgo" 
               tags={["Next.js", "Recharts", "API Integration"]}
