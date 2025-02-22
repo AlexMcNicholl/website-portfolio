@@ -3,11 +3,6 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    if (req.method !== 'POST') {
-      console.error("Method not allowed");
-      return NextResponse.json({ success: false, error: 'Method Not Allowed' }, { status: 405 });
-    }
-
     const body = await req.text(); // Read the request body as text
     console.log("Raw request body:", body); // Log the raw request body
 
