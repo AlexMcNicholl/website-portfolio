@@ -18,6 +18,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
   });
   const [pending, setPending] = useState(false)
   const [message, setMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("") // New state variable
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,14 +43,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
 
       if (response.ok) {
         setMessage("Message sent successfully!")
+        setErrorMessage("") // Clear error message on success
       } else {
         console.error("Error response:", result);
         setMessage("Something went wrong. Please try again.")
+        setErrorMessage(result.error || "Something went wrong. Please try again.") // Set error message
         onError(result.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error sending message:", error);
       setMessage("Something went wrong. Please try again.")
+      setErrorMessage("Something went wrong. Please try again.") // Set error message
       onError("Something went wrong. Please try again.");
     } finally {
       setPending(false)
@@ -81,6 +85,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
           {pending ? "Sending..." : "Send Message"}
         </Button>
         {message && <p className="text-sm text-center mt-4 text-muted-foreground">{message}</p>}
+        {errorMessage && <p className="text-sm text-center mt-4 text-red-500">{errorMessage}</p>} {/* Display error message */}
       </form>
     </Card>
   )
