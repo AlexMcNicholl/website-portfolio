@@ -49,8 +49,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
         body: JSON.stringify(formData),
       })
 
+      console.log("Response status:", response.status, response.statusText); // Log response status and status text
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
       }
 
       const text = await response.text();
