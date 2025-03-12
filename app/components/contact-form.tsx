@@ -49,21 +49,40 @@ const ContactForm: React.FC<ContactFormProps> = ({ onError }) => {
         body: JSON.stringify(formData),
       })
 
-      const result = await response.json()
-      console.log("Response received:", response) // Log response
-      console.log("Result received:", result) // Log result
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (error) {
+        throw new Error('Failed to parse JSON response');
+      }
+
+      // Handle the JSON response data
+      console.log(data);
 
       if (response.ok) {
         setMessage("Message sent successfully!")
       } else {
-        console.error("Error response:", result);
-        setErrorMessage(result.error || `Error: ${response.status} ${response.statusText}`) // Set error message
-        onError(result.error || `Error: ${response.status} ${response.statusText}`);
+        console.error("Error response:", data);
+        setErrorMessage(data.error || `Error: ${response.status} ${response.statusText}`) // Set error message
+        onError(data.error || `Error: ${response.status} ${response.statusText}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
-      setErrorMessage(`Error: ${error.message}`) // Set detailed error message
-      onError(`Error: ${error.message}`);
+      if (error instanceof Error) {
+        setErrorMessage(`Error: ${error.message}`) // Set detailed error message
+      } else {
+        setErrorMessage('An unknown error occurred') // Handle unknown error type
+      }
+      if (error instanceof Error) {
+        onError(`Error: ${error.message}`);
+      } else {
+        onError('An unknown error occurred');
+      }
     } finally {
       setPending(false)
     }
