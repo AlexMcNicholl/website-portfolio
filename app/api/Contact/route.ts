@@ -31,10 +31,10 @@ export async function POST(req: Request) {
 
     // Define email options
     const mailOptions = {
-      from: email,
+      from: process.env.EMAIL_USER, // Sender address
       to: process.env.EMAIL_USER, // Your email address to receive the message
       subject: `Contact Form Submission from ${name}`,
-      text: message,
+      text: `You have received a new message from ${name} (${email}):\n\n${message}`,
     };
 
     // Send email
@@ -46,4 +46,8 @@ export async function POST(req: Request) {
     console.error("Error processing form submission:", error);
     return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
   }
+}
+
+export async function GET() {
+  return NextResponse.json({ message: 'GET method is not allowed' }, { status: 405 });
 }
