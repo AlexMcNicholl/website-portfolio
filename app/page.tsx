@@ -9,9 +9,15 @@ export default function Home() {
     <main className="min-h-screen flex flex-col justify-center items-center bg-background text-foreground px-4">
       {/* Hero Section */}
       <div className="text-center space-y-4">
-        <div className="w-32 h-32 rounded-full bg-gray-300 mx-auto mb-6" /> {/* Placeholder image */}
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Hi, I'm [Your Name]</h1>
-        <p className="text-lg text-muted-foreground">FinTech Enthusiast • AI Developer • Product Thinker</p>
+      <div className="w-32 h-32 rounded-full bg-gray-300 mx-auto mb-6">
+        <img
+          src="/profile.jpg" // Replace with the actual file name of your photo
+          alt="Profile"
+          className="w-full h-full object-cover"
+        />
+      </div> {/* Placeholder image */}
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Hi, I'm Alex McNicholl</h1>
+        <p className="text-lg text-muted-foreground">FinTech Enthusiast • Recent Finance Graduate</p>
 
         {/* Buttons */}
         <div className="mt-6 flex flex-wrap justify-center gap-4">
@@ -29,13 +35,13 @@ export default function Home() {
 
         {/* Social Icons */}
         <div className="mt-6 flex justify-center gap-6">
-          <Link href="https://github.com/your-username" target="_blank" aria-label="GitHub">
+          <Link href="https://github.com/AlexMcNicholl" target="_blank" aria-label="GitHub">
             <Github className="w-6 h-6 hover:text-primary transition" />
           </Link>
-          <Link href="https://linkedin.com/in/your-linkedin" target="_blank" aria-label="LinkedIn">
+          <Link href="https://linkedin.com/in/amcnicholl" target="_blank" aria-label="LinkedIn">
             <Linkedin className="w-6 h-6 hover:text-primary transition" />
           </Link>
-          <Link href="mailto:your@email.com" aria-label="Email">
+          <Link href="mailto:amcnicholl02@gmail.com" aria-label="Email">
             <Mail className="w-6 h-6 hover:text-primary transition" />
           </Link>
         </div>
