@@ -9,13 +9,17 @@ export default function Home() {
     <main className="min-h-screen flex flex-col justify-center items-center bg-background text-foreground px-4">
       {/* Hero Section */}
       <div className="text-center space-y-4">
-      <div className="w-32 h-32 rounded-full bg-gray-300 mx-auto mb-6">
-        <img
-          src="/profile.jpg" // Replace with the actual file name of your photo
-          alt="Profile"
-          className="w-full h-full object-cover"
-        />
-      </div> {/* Placeholder image */}
+        <div className="relative mx-auto mb-6">
+          {/* Profile Image Container */}
+          <div className="w-40 h-40 rounded-full bg-gradient-to-b from-gray-200 to-gray-300 mx-auto overflow-hidden shadow-lg">
+            <img
+              src="/profile.jpg" // Replace with the actual file name of your photo
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Hi, I'm Alex McNicholl</h1>
         <p className="text-lg text-muted-foreground">FinTech Enthusiast • Recent Finance Graduate</p>
 
