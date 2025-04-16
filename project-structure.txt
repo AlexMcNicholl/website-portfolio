@@ -1,0 +1,147 @@
+.
+├── Build
+├── app
+│   ├── actions.ts
+│   ├── api
+│   │   ├── Contact
+│   │   │   └── route.ts
+│   │   ├── Stocks
+│   │   │   ├── info
+│   │   │   │   └── route.ts
+│   │   │   └── route.ts
+│   │   ├── backtest
+│   │   │   └── route.ts
+│   │   ├── pairs-trading
+│   │   │   └── route.ts
+│   │   ├── run-backtest.ts
+│   │   ├── run-python
+│   │   │   └── route.ts
+│   │   └── run-python.ts
+│   ├── components
+│   │   ├── ParticlesBackground.tsx
+│   │   ├── SessionProvider.tsx
+│   │   ├── contact-form.tsx
+│   │   ├── project-card.tsx
+│   │   ├── tech-stack.tsx
+│   │   ├── theme-provider.tsx
+│   │   └── ui
+│   │       ├── button.tsx
+│   │       └── card.tsx
+│   ├── data
+│   │   └── projects.ts
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── lib
+│   │   ├── backtest.ts
+│   │   ├── pairs-trading.ts
+│   │   └── utils.tsx
+│   ├── page.tsx
+│   ├── projects
+│   │   ├── [slug]
+│   │   │   └── page.tsx
+│   │   ├── financial-visualization
+│   │   │   ├── page.tsx
+│   │   │   ├── stockchart.tsx
+│   │   │   └── stocktable.tsx
+│   │   └── pairs-trading
+│   │       ├── backtest.tsx
+│   │       ├── page.tsx
+│   │       └── results
+│   │           └── page.tsx
+│   └── python
+│       └── Coint_Valid.py
+├── components
+│   ├── SessionProvider.tsx
+│   ├── theme-provider.tsx
+│   ├── theme-toggle.tsx
+│   └── ui
+│       ├── accordion.tsx
+│       ├── alert-dialog.tsx
+│       ├── alert.tsx
+│       ├── aspect-ratio.tsx
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── breadcrumb.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── card.tsx
+│       ├── carousel.tsx
+│       ├── chart.tsx
+│       ├── checkbox.tsx
+│       ├── collapsible.tsx
+│       ├── command.tsx
+│       ├── context-menu.tsx
+│       ├── dialog.tsx
+│       ├── drawer.tsx
+│       ├── dropdown-menu.tsx
+│       ├── form.tsx
+│       ├── hover-card.tsx
+│       ├── input-otp.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── menubar.tsx
+│       ├── navigation-menu.tsx
+│       ├── pagination.tsx
+│       ├── popover.tsx
+│       ├── progress.tsx
+│       ├── radio-group.tsx
+│       ├── resizable.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── sheet.tsx
+│       ├── sidebar.tsx
+│       ├── skeleton.tsx
+│       ├── slider.tsx
+│       ├── sonner.tsx
+│       ├── switch.tsx
+│       ├── table.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       ├── toast.tsx
+│       ├── toaster.tsx
+│       ├── toggle-group.tsx
+│       ├── toggle.tsx
+│       ├── tooltip.tsx
+│       ├── use-mobile.tsx
+│       └── use-toast.ts
+├── components.json
+├── fix-links.js
+├── hooks
+│   ├── use-mobile.tsx
+│   └── use-toast.ts
+├── lib
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── project-structure.txt
+├── public
+│   ├── 9.webp
+│   ├── AlexMcNicholl_CV.pdf
+│   ├── placeholder-logo.png
+│   ├── placeholder-logo.svg
+│   ├── placeholder-user.jpg
+│   ├── placeholder.jpg
+│   ├── placeholder.svg
+│   └── portfolio.jpg
+├── python
+│   └── Coint_Valid.py
+├── requirements.txt
+├── scripts
+│   ├── __pycache__
+│   │   ├── backtest_pairs_trading.cpython-313.pyc
+│   │   └── pairs_trading_strategy.cpython-313.pyc
+│   ├── analyze_pairs.py
+│   ├── backtest_pairs_trading.py
+│   ├── pairs_trading_strategy.py
+│   └── run_backtest.py
+├── structure.txt
+├── styles
+│   └── globals.css
+├── tailwind.config.ts
+└── tsconfig.json
+
+28 directories, 117 files
