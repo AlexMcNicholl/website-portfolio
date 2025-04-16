@@ -53,7 +53,7 @@ export default function ProjectsPage() {
       <div>
         <h1 className="text-4xl font-bold text-center mb-8">My Projects</h1>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* Example Project Card */}
+          {/* Project 1: Pairs Trading Algorithm */}
           <ProjectCard
             title="Pairs Trading Algorithm"
             description="Programmatic Trading with Statistical Arbitrage."
@@ -62,19 +62,38 @@ export default function ProjectsPage() {
             github="https://github.com/AlexMcNicholl/Trading"
             tags={["Python Libraries", "SQL", "API Integration"]}
           />
-          {/* Add more ProjectCard components here */}
+
+          {/* Project 2: Financial Data Visualization */}
+          <ProjectCard
+            title="Financial Data Visualization"
+            description="Real-time stock charts with interactive analysis."
+            image="/portfolio.jpg?height=400&width=600"
+            slug="financial-visualization"
+            github="https://github.com/AlexMcNicholl/TradingAlgo"
+            tags={["Next.js", "Recharts", "API Integration"]}
+          />
+
+          {/* Project 3: Placeholder */}
+          <ProjectCard
+            title="Project #3"
+            description="Description goes here."
+            image="/placeholder.jpg"
+            slug="project-3"
+            github="#"
+            tags={["Tag1", "Tag2", "Tag3"]}
+          />
         </div>
       </div>
 
       {/* Disclaimer and Return Button */}
-      <div className="mt-12 text-center">
-        <p className="text-sm text-muted-foreground">
+      <div className="mt-16 text-center">
+        <p className="text-lg font-semibold text-muted-foreground">
           Disclaimer: All projects are a work in progress.
         </p>
-        <div className="mt-4">
+        <div className="mt-6">
           <Link
             href="/"
-            className="inline-block px-6 py-2 bg-primary text-white rounded hover:bg-primary/90"
+            className="inline-block px-8 py-3 text-lg bg-primary text-white rounded hover:bg-primary/90"
           >
             Return to Home
           </Link>
