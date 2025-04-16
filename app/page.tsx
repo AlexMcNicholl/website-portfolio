@@ -11,7 +11,7 @@ export default function Home() {
       <div className="text-center space-y-4">
         <div className="relative mx-auto mb-6">
           {/* Profile Image Container */}
-          <div className="w-40 h-40 rounded-full bg-gradient-to-b from-gray-200 to-gray-300 mx-auto overflow-hidden shadow-lg">
+          <div className="w-56 h-56 rounded-full bg-gradient-to-b from-gray-200 to-gray-300 mx-auto overflow-hidden shadow-lg">
             <img
               src="/profile.jpg" // Replace with the actual file name of your photo
               alt="Profile"
