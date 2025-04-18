@@ -1,37 +1,55 @@
 "use client"; // Ensure it's a Client Component
 
-import { useParams } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
-import projectsData from "@/data/projects"; // Import the projects data
+import { useState, useEffect } from "react";
 
-export default function ProjectPage() {
-  const params = useParams(); // Get URL params
-  const slug = params?.slug as string; // Get the project slug from the URL
-
-  const project = projectsData.find((p) => p.slug === slug);
-
+export default function PairsTradingPage() {
   // State for dropdown selections
   const [assetClass, setAssetClass] = useState("");
   const [numPairs, setNumPairs] = useState("");
   const [industry, setIndustry] = useState("");
 
-  if (!project) {
-    return <div className="text-center text-red-500 text-xl font-semibold">Project not found</div>;
-  }
+  // Fetch user selections from localStorage on the client side
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedAssetClass = localStorage.getItem("assetClass") || "";
+      const storedNumPairs = localStorage.getItem("numPairs") || "";
+      const storedIndustry = localStorage.getItem("industry") || "";
+
+      setAssetClass(storedAssetClass);
+      setNumPairs(storedNumPairs);
+      setIndustry(storedIndustry);
+    }
+  }, []);
+
+  // Save user choices to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("assetClass", assetClass);
+      localStorage.setItem("numPairs", numPairs);
+      localStorage.setItem("industry", industry);
+    }
+  }, [assetClass, numPairs, industry]);
+
+  // Check if all fields are filled
+  const isAnalyzeDisabled = !assetClass || !numPairs || (assetClass === "equities" && !industry);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background text-foreground">
       {/* Updated Title */}
-      <h1 className="text-4xl font-bold mb-4">{project.title} Algorithm</h1>
+      <h1 className="text-4xl font-bold mb-4">Pairs Trading Algorithm</h1>
 
-      <p className="max-w-2xl text-lg text-center text-gray-400">{project.description}</p>
+      <p className="max-w-2xl text-lg text-center text-gray-400">
+        A statistical arbitrage trading algorithm that identifies and trades pairs of assets.
+      </p>
 
       {/* Dropdown Section */}
       <div className="mt-8 flex flex-col items-center space-y-4">
         {/* Asset Class Dropdown */}
         <div className="dropdown">
-          <label htmlFor="asset-class" className="block text-lg font-semibold mb-2">Asset Class:</label>
+          <label htmlFor="asset-class" className="block text-lg font-semibold mb-2">
+            Asset Class:
+          </label>
           <select
             id="asset-class"
             value={assetClass}
@@ -48,7 +66,9 @@ export default function ProjectPage() {
 
         {/* Number of Pairs Dropdown */}
         <div className="dropdown">
-          <label htmlFor="num-pairs" className="block text-lg font-semibold mb-2">Number of Pairs:</label>
+          <label htmlFor="num-pairs" className="block text-lg font-semibold mb-2">
+            Number of Pairs:
+          </label>
           <select
             id="num-pairs"
             value={numPairs}
@@ -65,7 +85,9 @@ export default function ProjectPage() {
         {/* Industry Dropdown (Conditional) */}
         {assetClass === "equities" && (
           <div className="dropdown">
-            <label htmlFor="industry" className="block text-lg font-semibold mb-2">Industry:</label>
+            <label htmlFor="industry" className="block text-lg font-semibold mb-2">
+              Industry:
+            </label>
             <select
               id="industry"
               value={industry}
@@ -85,22 +107,39 @@ export default function ProjectPage() {
 
       {/* Analyze Button */}
       <div className="mt-6">
-        <button
-          onClick={() => alert("Analyze button clicked!")}
-          className="px-6 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition-all"
+        <Link
+          href="/projects/pairs-trading/analyze"
+          className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+            isAnalyzeDisabled
+              ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+              : "bg-green-600 hover:bg-green-700 text-white"
+          }`}
+          onClick={(e) => {
+            if (isAnalyzeDisabled) e.preventDefault(); // Prevent navigation if disabled
+          }}
         >
           Analyze
-        </button>
+        </Link>
       </div>
 
+      {/* GitHub Link */}
       <div className="mt-6">
-        <Link href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-lg">
+        <Link
+          href="https://github.com/AlexMcNicholl/TradingAlgo"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:underline text-lg"
+        >
           🔗 View on GitHub
         </Link>
       </div>
 
+      {/* Back to Home */}
       <div className="mt-6">
-        <Link href="/" className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all">
+        <Link
+          href="/"
+          className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all"
+        >
           ⬅ Back to Home
         </Link>
       </div>

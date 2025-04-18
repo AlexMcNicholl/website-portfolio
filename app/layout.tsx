@@ -1,5 +1,5 @@
 import { ThemeProvider } from "./components/theme-provider";
-import CustomSessionProvider from "./components/SessionProvider"; // Import the client session provider
+import SessionProvider from "@/components/SessionProvider"; // Update the import statement
 import { cn } from "./lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Alex McNicholl - FinTech",
-  description: "Portfolio to show off my skills", // Update this line
+  description: "Portfolio to show off my skills",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,9 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ParticlesBackground />
-          <CustomSessionProvider> {/* Wrap everything inside the session provider */}
+          <SessionProvider> {/* Wrap everything inside the session provider */}
             {children}
-          </CustomSessionProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>
