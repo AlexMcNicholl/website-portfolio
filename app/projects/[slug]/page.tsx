@@ -22,7 +22,8 @@ export default function ProjectPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background text-foreground">
-      <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
+      {/* Updated Title */}
+      <h1 className="text-4xl font-bold mb-4">{project.title} Algorithm</h1>
 
       <p className="max-w-2xl text-lg text-center text-gray-400">{project.description}</p>
 
@@ -80,6 +81,16 @@ export default function ProjectPage() {
             </select>
           </div>
         )}
+      </div>
+
+      {/* Analyze Button */}
+      <div className="mt-6">
+        <button
+          onClick={() => alert("Analyze button clicked!")}
+          className="px-6 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition-all"
+        >
+          Analyze
+        </button>
       </div>
 
       <div className="mt-6">
