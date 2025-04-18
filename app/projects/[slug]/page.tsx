@@ -1,7 +1,6 @@
 "use client"; // Ensure it's a Client Component
 
 import { useParams } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import projectsData from "@/data/projects"; // Import the projects data
@@ -24,7 +23,6 @@ export default function ProjectPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-background text-foreground">
       <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-      <Image src={project.image} alt={project.title} width={800} height={450} className="rounded-lg mb-6" />
 
       <p className="max-w-2xl text-lg text-center text-gray-400">{project.description}</p>
 
@@ -40,9 +38,10 @@ export default function ProjectPage() {
             className="p-2 border rounded-lg bg-white text-black"
           >
             <option value="">Select Asset Class</option>
-            <option value="stocks">Stocks</option>
-            <option value="bonds">Bonds</option>
-            <option value="crypto">Cryptocurrency</option>
+            <option value="equities">Equities</option>
+            <option value="commodities">Commodities</option>
+            <option value="fx">FX</option>
+            <option value="crypto">CryptoCurrencies</option>
           </select>
         </div>
 
@@ -56,27 +55,31 @@ export default function ProjectPage() {
             className="p-2 border rounded-lg bg-white text-black"
           >
             <option value="">Select Number of Pairs</option>
-            <option value="1">1</option>
             <option value="2">2</option>
-            <option value="3">3</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
           </select>
         </div>
 
-        {/* Industry Dropdown */}
-        <div className="dropdown">
-          <label htmlFor="industry" className="block text-lg font-semibold mb-2">Industry:</label>
-          <select
-            id="industry"
-            value={industry}
-            onChange={(e) => setIndustry(e.target.value)}
-            className="p-2 border rounded-lg bg-white text-black"
-          >
-            <option value="">Select Industry</option>
-            <option value="tech">Technology</option>
-            <option value="finance">Finance</option>
-            <option value="healthcare">Healthcare</option>
-          </select>
-        </div>
+        {/* Industry Dropdown (Conditional) */}
+        {assetClass === "equities" && (
+          <div className="dropdown">
+            <label htmlFor="industry" className="block text-lg font-semibold mb-2">Industry:</label>
+            <select
+              id="industry"
+              value={industry}
+              onChange={(e) => setIndustry(e.target.value)}
+              className="p-2 border rounded-lg bg-white text-black"
+            >
+              <option value="">Select Industry</option>
+              <option value="technology">Technology</option>
+              <option value="finance">Finance</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="energy">Energy</option>
+              <option value="consumer-goods">Consumer Goods</option>
+            </select>
+          </div>
+        )}
       </div>
 
       <div className="mt-6">
