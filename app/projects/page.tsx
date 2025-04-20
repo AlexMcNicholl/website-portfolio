@@ -75,10 +75,10 @@ export default function ProjectsPage() {
 
           {/* Project 3: Placeholder */}
           <ProjectCard
-            title="Project #3"
+            title="Monte Carlo Retirement Simulator"
             description="Description goes here."
             image="/placeholder.jpg"
-            slug="project-3"
+            slug="retirement-sim"
             github="#"
             tags={["Tag1", "Tag2", "Tag3"]}
           />
