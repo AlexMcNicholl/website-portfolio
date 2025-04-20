@@ -63,13 +63,13 @@ export default function ProjectsPage() {
             tags={["Python Libraries", "SQL", "API Integration"]}
           />
 
-          {/* Project 2: Financial Data Visualization */}
+          {/* Project 2: Black-Scholes Option Pricing Model */}
           <ProjectCard
-            title="Financial Data Visualization"
-            description="Real-time stock charts with interactive analysis."
-            image="/portfolio.jpg?height=400&width=600"
-            slug="financial-visualization"
-            github="https://github.com/AlexMcNicholl/TradingAlgo"
+            title="Black-Scholes Option Pricing Model"
+            description="Option Pricing with the Black-Scholes Model."
+            image="/options.png?height=400&width=600"
+            slug="options-model"
+            github="https://github.com/AlexMcNicholl"
             tags={["Next.js", "Recharts", "API Integration"]}
           />
 
