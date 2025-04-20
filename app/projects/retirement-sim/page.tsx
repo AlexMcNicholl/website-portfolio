@@ -293,7 +293,7 @@ function RetirementSimulatorContent() {
                 />
               </label>
               <label>
-                Number of Simulations:
+                
                 <input
                   type="hidden"
                   value={10000} // Default number of simulations
