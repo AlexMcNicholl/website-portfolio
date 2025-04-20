@@ -17,7 +17,7 @@ function ProjectCard({ title, description, image, slug, github, tags }: any) {
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-sm text-muted-foreground">{description}</p>
         <div className="mt-2 flex flex-wrap gap-2">
-          {tags.map((tag: string, index: number) => (
+          {tags?.map((tag: string, index: number) => (
             <span
               key={index}
               className="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded"
@@ -80,7 +80,7 @@ export default function ProjectsPage() {
             image="/retirement.jpg"
             slug="retirement-sim"
             github="https://github.com/AlexMcNicholl"
-            
+            tags={[]}
           />
         </div>
       </div>
