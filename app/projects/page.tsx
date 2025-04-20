@@ -73,14 +73,14 @@ export default function ProjectsPage() {
             tags={["Next.js", "Recharts", "API Integration"]}
           />
 
-          {/* Project 3: Placeholder */}
+          {/* Project 3: Monte Carlo Sim */}
           <ProjectCard
             title="Monte Carlo Retirement Simulator"
-            description="Description goes here."
-            image="/placeholder.jpg"
+            description="Monte Carlo Analysis for retirement savings and withdrawals to estimate potential financial outcomes."
+            image="/retirement.jpg"
             slug="retirement-sim"
-            github="#"
-            tags={["Tag1", "Tag2", "Tag3"]}
+            github="https://github.com/AlexMcNicholl"
+            
           />
         </div>
       </div>
