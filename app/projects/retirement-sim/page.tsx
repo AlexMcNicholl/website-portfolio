@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
 import { Line, Bar } from "react-chartjs-2";
 import {
@@ -16,10 +17,9 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { CardHeader } from "components/ui/card";
-import { CardTitle } from "website-portfolio/components/ui/card";
-import { TooltipProvider } from "website-portfolio/components/ui/tooltip";
+// import { TooltipProvider } from "@/components/ui/tooltip"; // Removed as the module does not exist
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "components/ui/modal";
+import { CardHeader, CardTitle } from "components/ui/card";
 
 // Register Chart.js components
 ChartJS.register(
@@ -35,9 +35,7 @@ ChartJS.register(
 
 export default function RetirementSimulator() {
   return (
-    <TooltipProvider>
-      <RetirementSimulatorContent />
-    </TooltipProvider>
+    <RetirementSimulatorContent />
   );
 }
 
