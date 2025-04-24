@@ -82,6 +82,16 @@ export default function ProjectsPage() {
             github="https://github.com/AlexMcNicholl"
             tags={[]}
           />
+
+          {/* Project 4: AI Project Spawner */}
+          <ProjectCard
+            title="AI Project Spawner"
+            description="An AI-powered agent that generates new and unique tech projects autonomously."
+            image="/ai-project-spawner.jpg" // Add an appropriate image to your public folder
+            slug="ai-project-spawner"
+            github="https://github.com/AlexMcNicholl" // Replace with the actual GitHub repo link when available
+            tags={["AI", "Automation", "OpenAI API"]}
+          />
         </div>
       </div>
 
