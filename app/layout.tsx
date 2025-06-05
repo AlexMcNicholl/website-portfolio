@@ -24,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </SessionProvider>
         </ThemeProvider>
+        <Analytics /> {/* Optional: Add Vercel Analytics */}
       </body>
     </html>
   );
