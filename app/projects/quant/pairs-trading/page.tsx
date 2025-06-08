@@ -108,7 +108,7 @@ export default function PairsTradingPage() {
       {/* Analyze Button */}
       <div className="mt-6">
         <Link
-          href="/projects/pairs-trading/analyze"
+          href="/projects/quant/pairs-trading/analyze"
           className={`px-6 py-2 rounded-lg font-semibold transition-all ${
             isAnalyzeDisabled
               ? "bg-gray-400 text-gray-700 cursor-not-allowed"
